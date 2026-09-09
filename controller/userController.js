@@ -1,18 +1,22 @@
 const user = require('../model/userModel')
 
-exports.InsertData = async(req, res) => {
-    var data = await user.create(req.body);
-    res.status(200).json({
-        status : "Data Insert",
-        data
-    })
-}
 
 exports.RegisterData = async(req, res) => {
-    await user.create(req.body.email);
-    res.status(200).json({
-        status : "Registered Successfully"
+    var findData = await user.find({email: req.body.email})
+    if(findData.length >= 1)
+    {
+          res.status(200).json({
+            status : "Email already exists"
+        })
+    }
+    
+    else
+    {
+        var data = await user.create(req.body);
+        res.status(200).json({
+        status : "Registered Successfully", data
     })
+}
 }
 
 exports.LoginData = async(req, res) => {

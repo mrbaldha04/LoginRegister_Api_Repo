@@ -4,8 +4,7 @@
  * Module dependencies.
  */
 
-const dns = require('dns');
-dns.setServers(['8.8.8.8', '8.8.4.4']);
+
 
 var app = require('../app');
 var debug = require('debug')('loginregister-api:server');
@@ -13,7 +12,7 @@ var http = require('http');
 
 const mongoose = require('mongoose');
 
-mongoose.connect('mongodb+srv://mrbaldha:1234@cluster0.bkriclu.mongodb.net/LoginRegister_Api_db')
+mongoose.connect('mongodb://127.0.0.1:27017/LoginRegister_Api_db')
   .then(() => console.log('Connected!'));
 
 /**
